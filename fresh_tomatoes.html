@@ -1,12 +1,4 @@
-import webbrowser
-import item_class
-import os
-import re
-import random
 
-
-# Styles and scripting for the page
-main_page_head = '''
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -114,11 +106,7 @@ main_page_head = '''
         });
     </script>
 </head>
-'''
 
-
-# The main page layout and title bar
-main_page_content = '''
   <body>
     <!-- Trailer Video Modal -->
     <div class="modal" id="trailer">
@@ -140,90 +128,65 @@ main_page_content = '''
           <div class="navbar-header">
             <ul>
               <li><a class="navbar-brand active" href="fresh_tomatoes.html">Fresh Tomatoes</a></li>
-              {navbar}
+              
+ <li><a href="Movie.html">Movie</a></li>
+ 
+ <li><a href="Tv.html">Tv</a></li>
+ 
+ <li><a href="Mv.html">Mv</a></li>
+ 
             </ul>
           </div>
         </div>
       </div>
     </div>
     <div class="container">
-      {tiles}
+      
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="SUXWAEX2jlg" data-toggle="modal" data-target="#trailer">
+    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BZGY5Y2RjMmItNDg5Yy00NjUwLThjMTEtNDc2OGUzNTBiYmM1XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_UX182_CR0,0,182,268_AL_.jpg" width="220" height="320">
+    <h2>Fight Club</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="owK1qxDselE" data-toggle="modal" data-target="#trailer">
+    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMDliMmNhNDEtODUyOS00MjNlLTgxODEtN2U3NzIxMGVkZTA1L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_UX182_CR0,0,182,268_AL_.jpg" width="220" height="320">
+    <h2>Gladiator</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="s7EdQ4FqbhY" data-toggle="modal" data-target="#trailer">
+    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTkxMTA5OTAzMl5BMl5BanBnXkFtZTgwNjA5MDc3NjE@._V1_UX182_CR0,0,182,268_AL_.jpg" width="220" height="320">
+    <h2>Pulp Fiction</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="d3Hg6XHIUf8" data-toggle="modal" data-target="#trailer">
+    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BNzA2ZDk2ZTUtMWU2Yi00NDVmLTk1ODEtMmFmMjQyNWYzODI0XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_UX182_CR0,0,182,268_AL_.jpg" width="220" height="320">
+    <h2>Futurama season 5</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="0YLBweopCcw" data-toggle="modal" data-target="#trailer">
+    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTI3ODc2ODc0M15BMl5BanBnXkFtZTYwMjgzNjc3._V1_UX182_CR0,0,182,268_AL_.jpg" width="220" height="320">
+    <h2>Band of Brothers season 1</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="9djCOPHOvOw" data-toggle="modal" data-target="#trailer">
+    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjA5MjUxNDgwNF5BMl5BanBnXkFtZTgwMDI5NjMwNDE@._V1_UY268_CR9,0,182,268_AL_.jpg" width="220" height="320">
+    <h2>Parks and Recreation season 1</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="QcIy9NiNbmo" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/QcIy9NiNbmo/maxresdefault.jpg" width="220" height="320">
+    <h2> Bad Blood </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="SmM0653YvXU" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/SmM0653YvXU/maxresdefault.jpg" width="220" height="320">
+    <h2> Rain Over Me </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="0KSOMA3QBU0" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/0KSOMA3QBU0/maxresdefault.jpg" width="220" height="320">
+    <h2> Dark Horse  </h2>
+</div>
+
     </div>
   </body>
 </html>
-'''
-
-# A single navbar entry html template
-navbar_content = '''
- <li><a href="{category_url}">{nav_title}</a></li>
- '''
-
-# A single item entry html template
-tile_content = '''
-<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
-    <img src="{poster_image_url}" width="220" height="320">
-    <h2>{title}</h2>
-</div>
-'''
-
-
-def create_tiles_content(items):
-    # The HTML content for this section of the page
-    content = ''
-    if not isinstance(items, item_class.Book):
-        for item in items:
-            # Extract the youtube ID from the url
-            youtube_id_match = re.search(
-                r'(?<=v=)[^&#]+', item.url)
-            youtube_id_match = youtube_id_match or re.search(
-                r'(?<=be/)[^&#]+', item.url)
-            trailer_youtube_id = (youtube_id_match.group(0) if youtube_id_match
-                                  else None)
-
-            # Append the tile for the item with its content filled in
-            content += tile_content.format(
-                title=item.title,
-                poster_image_url=item.poster,
-                trailer_youtube_id=trailer_youtube_id
-            )
-    return content
-
-
-def open_page(items_list):
-    home_page_items = []
-    navbar = ''
-
-    # get navigation bar
-    for items in items_list:
-        # identify the items class
-        cat = re.search(r'(?<=item_class\.).*(?=\'>)', str(type(items[0]))).group(0)
-        navbar += navbar_content.format(
-            category_url=cat + '.html',
-            nav_title=cat
-        )
-
-    # generate website according to category
-    for items in items_list:
-        cat = re.search(r'(?<=item_class\.).*(?=\'>)', str(type(items[0]))).group(0)
-        random.shuffle(items)
-        home_page_items.extend(items[:3])
-        # Replace the item tiles placeholder generated content
-        rendered_content = main_page_content.format(navbar=navbar,
-            tiles=create_tiles_content(items))
-        with open(cat + '.html', 'w') as f:
-            f.write(main_page_head + rendered_content)
-
-    # generate the home page
-    output_file = open('fresh_tomatoes.html', 'w')
-    # Replace the item tiles placeholder generated content
-    rendered_content = main_page_content.format(navbar=navbar,
-        tiles=create_tiles_content(home_page_items))
-    print(home_page_items)
-
-    # Output the file
-    output_file.write(main_page_head + rendered_content)
-    output_file.close()
-
-    # open the output file in the browser (in a new tab, if possible)
-    url = os.path.abspath(output_file.name)
-    webbrowser.open('file://' + url, new=2)

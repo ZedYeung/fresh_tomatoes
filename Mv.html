@@ -1,0 +1,647 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Fresh Tomatoes!</title>
+
+    <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <style type="text/css" media="screen">
+        body {
+            padding-top: 80px;
+        }
+        #trailer .modal-dialog {
+            margin-top: 200px;
+            width: 640px;
+            height: 480px;
+        }
+        .hanging-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            z-index: 9001;
+        }
+        #trailer-video {
+            width: 100%;
+            height: 100%;
+        }
+        .item-tile {
+            margin-bottom: 50px;
+            padding-top: 20px;
+        }
+        .item-tile:hover {
+            background-color: #EEE;
+            cursor: pointer;
+        }
+        .scale-media {
+            padding-bottom: 56.25%;
+            position: relative;
+        }
+        .scale-media iframe {
+            border: none;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-color: white;
+        }
+        /* navigation bar is mainly from https://www.w3schools.com/css/css_navbar.asp */
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        /* Change the link color to #111 (black) on hover */
+        li a:hover {
+            background-color: #111;
+        }
+        /* Change the current link color to #CC181E (red)
+        .active {
+            background-color: #CC181E;
+        }
+    </style>
+    <script type="text/javascript" charset="utf-8">
+        // Pause the video when the modal is closed
+        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
+            // Remove the src so the player itself gets removed, as this is the only
+            // reliable way to ensure the video stops playing in IE
+            $("#trailer-video-container").empty();
+        });
+        // Start playing the video whenever the trailer modal is opened
+        $(document).on('click', '.item-tile', function (event) {
+            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
+            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
+              'id': 'trailer-video',
+              'type': 'text-html',
+              'src': sourceUrl,
+              'frameborder': 0
+            }));
+        });
+        // Animate in the items when the page loads
+        $(document).ready(function () {
+          $('.item-tile').hide().first().show("fast", function showNext() {
+            $(this).next("div").show("fast", showNext);
+          });
+        });
+    </script>
+</head>
+
+  <body>
+    <!-- Trailer Video Modal -->
+    <div class="modal" id="trailer">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+          </a>
+          <div class="scale-media" id="trailer-video-container">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Page Content -->
+    <div class="container">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <ul>
+              <li><a class="navbar-brand active" href="fresh_tomatoes.html">Fresh Tomatoes</a></li>
+              
+ <li><a href="Movie.html">Movie</a></li>
+ 
+ <li><a href="Tv.html">Tv</a></li>
+ 
+ <li><a href="Mv.html">Mv</a></li>
+ 
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="QcIy9NiNbmo" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/QcIy9NiNbmo/maxresdefault.jpg" width="220" height="320">
+    <h2> Bad Blood </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="SmM0653YvXU" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/SmM0653YvXU/maxresdefault.jpg" width="220" height="320">
+    <h2> Rain Over Me </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="0KSOMA3QBU0" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/0KSOMA3QBU0/maxresdefault.jpg" width="220" height="320">
+    <h2> Dark Horse  </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="j5-yKhDd64s" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/j5-yKhDd64s/maxresdefault.jpg" width="220" height="320">
+    <h2> Not Afraid</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="uxpDa-c-4Mc" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/uxpDa-c-4Mc/maxresdefault.jpg" width="220" height="320">
+    <h2> Hotline Bling</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="o3mP3mJDL2k" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/o3mP3mJDL2k/maxresdefault.jpg" width="220" height="320">
+    <h2> Can't Remember to Forget You </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="2vjPBrBU-TM" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/2vjPBrBU-TM/maxresdefault.jpg" width="220" height="320">
+    <h2> Chandelier </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="QGJuMBdaqIw" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/QGJuMBdaqIw/maxresdefault.jpg" width="220" height="320">
+    <h2> Firework </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="kffacxfA7G4" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/kffacxfA7G4/maxresdefault.jpg" width="220" height="320">
+    <h2> Baby </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="-UV0QGLmYys" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/-UV0QGLmYys/maxresdefault.jpg" width="220" height="320">
+    <h2> La Bicicleta </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="3AtDnEC4zak" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/3AtDnEC4zak/maxresdefault.jpg" width="220" height="320">
+    <h2> We Don't Talk Anymore  </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="YqeW9_5kURI" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/YqeW9_5kURI/maxresdefault.jpg" width="220" height="320">
+    <h2> Lean On </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="9bZkp7q19f0" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/9bZkp7q19f0/maxresdefault.jpg" width="220" height="320">
+    <h2> GANGNAM STYLE M/V</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="QFs3PIZb3js" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/QFs3PIZb3js/maxresdefault.jpg" width="220" height="320">
+    <h2> Propuesta Indecente </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="hLQl3WQQoQ0" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/hLQl3WQQoQ0/maxresdefault.jpg" width="220" height="320">
+    <h2> Someone Like You</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="yUV9JwiQLog" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/yUV9JwiQLog/maxresdefault.jpg" width="220" height="320">
+    <h2> 6 AM </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="aKuivabiOns" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/aKuivabiOns/maxresdefault.jpg" width="220" height="320">
+    <h2> Shaky Shaky </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="IcrbM1l_BoI" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/IcrbM1l_BoI/maxresdefault.jpg" width="220" height="320">
+    <h2> Wake Me Up </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="60ItHLz5WEA" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/60ItHLz5WEA/maxresdefault.jpg" width="220" height="320">
+    <h2> Faded</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="YBHQbu5rbdQ" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/YBHQbu5rbdQ/maxresdefault.jpg" width="220" height="320">
+    <h2> Worth It </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="hiP14ED28CA" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/hiP14ED28CA/maxresdefault.jpg" width="220" height="320">
+    <h2> "Wiggle" </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="L8eRzOYhLuw" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/L8eRzOYhLuw/maxresdefault.jpg" width="220" height="320">
+    <h2> Break Free </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="fWNaR-rxAic" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/fWNaR-rxAic/maxresdefault.jpg" width="220" height="320">
+    <h2> Call Me Maybe</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="lWA2pjMjpBs" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/lWA2pjMjpBs/maxresdefault.jpg" width="220" height="320">
+    <h2> Diamonds</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="QJO3ROT-A4E" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/QJO3ROT-A4E/maxresdefault.jpg" width="220" height="320">
+    <h2> What Makes You Beautiful</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="e-ORhEE9VVg" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/e-ORhEE9VVg/maxresdefault.jpg" width="220" height="320">
+    <h2> Blank Space</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="JGwWNGJdvx8" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/JGwWNGJdvx8/hqdefault.jpg" width="220" height="320">
+    <h2> Shape of You </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="qrO4YZeyl0I" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/qrO4YZeyl0I/maxresdefault.jpg" width="220" height="320">
+    <h2> Bad Romance</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="3O1_3zBUKM8" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/3O1_3zBUKM8/hqdefault.jpg" width="220" height="320">
+    <h2> La La La </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="SXiSVQZLje8" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/SXiSVQZLje8/maxresdefault.jpg" width="220" height="320">
+    <h2> Side To Side </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="LjhCEhWiKXk" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/LjhCEhWiKXk/maxresdefault.jpg" width="220" height="320">
+    <h2> Just The Way You Are </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="KlyXNRrsk4A" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/KlyXNRrsk4A/maxresdefault.jpg" width="220" height="320">
+    <h2> Last Friday Night </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="hT_nvWreIhg" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/hT_nvWreIhg/maxresdefault.jpg" width="220" height="320">
+    <h2> Counting Stars</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="YQHsXMglC9A" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/YQHsXMglC9A/maxresdefault.jpg" width="220" height="320">
+    <h2> Hello</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="kJQP7kiw5Fk" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/kJQP7kiw5Fk/maxresdefault.jpg" width="220" height="320">
+    <h2> Despacito </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="KEI4qSrkPAs" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/KEI4qSrkPAs/maxresdefault.jpg" width="220" height="320">
+    <h2> Can't Feel My Face</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="fLexgOxsZu0" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/fLexgOxsZu0/maxresdefault.jpg" width="220" height="320">
+    <h2> The Lazy Song </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="PIh2xe4jnpk" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/PIh2xe4jnpk/maxresdefault.jpg" width="220" height="320">
+    <h2> Rude</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="5GL9JoH4Sws" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/5GL9JoH4Sws/maxresdefault.jpg" width="220" height="320">
+    <h2> Work from Home </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="34Na4j8AVgA" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/34Na4j8AVgA/maxresdefault.jpg" width="220" height="320">
+    <h2> Starboy  </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="HL1UzIK-flA" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/HL1UzIK-flA/maxresdefault.jpg" width="220" height="320">
+    <h2> Work  </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="5dbEhBKGOtY" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/5dbEhBKGOtY/hqdefault.jpg" width="220" height="320">
+    <h2> Play Hard </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="oyEuk8j8imI" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/oyEuk8j8imI/maxresdefault.jpg" width="220" height="320">
+    <h2> Love Yourself  </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="nfWlot6h_JM" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/nfWlot6h_JM/maxresdefault.jpg" width="220" height="320">
+    <h2> Shake It Off</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="papuvlVeZg8" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/papuvlVeZg8/maxresdefault.jpg" width="220" height="320">
+    <h2> Rockabye </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="nCkpzqqog4k" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/nCkpzqqog4k/maxresdefault.jpg" width="220" height="320">
+    <h2> I'm Not The Only One</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="rYEDA3JcQqw" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/rYEDA3JcQqw/maxresdefault.jpg" width="220" height="320">
+    <h2> Rolling in the Deep</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="AJtDXIazrMo" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/AJtDXIazrMo/maxresdefault.jpg" width="220" height="320">
+    <h2> Love Me Like You Do </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="iS1g8G_njx8" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/iS1g8G_njx8/maxresdefault.jpg" width="220" height="320">
+    <h2> Problem </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="AMTAQ-AJS4Y" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/AMTAQ-AJS4Y/maxresdefault.jpg" width="220" height="320">
+    <h2> Andas En Mi Cabeza </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="yzTuBuRdAyA" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/yzTuBuRdAyA/maxresdefault.jpg" width="220" height="320">
+    <h2> The Hills</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="EgqUJOudrcM" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/EgqUJOudrcM/maxresdefault.jpg" width="220" height="320">
+    <h2> How Deep Is Your Love</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="QK8mJJJvaes" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/QK8mJJJvaes/maxresdefault.jpg" width="220" height="320">
+    <h2> THRIFT SHOP FEAT. WANZ </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="RBumgq5yVrA" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/RBumgq5yVrA/maxresdefault.jpg" width="220" height="320">
+    <h2> Let Her Go </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="y6Sxv-sUYtM" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/y6Sxv-sUYtM/maxresdefault.jpg" width="220" height="320">
+    <h2> Happy </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="pXRviuL6vMY" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/pXRviuL6vMY/hqdefault.jpg" width="220" height="320">
+    <h2> Stressed Out </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="VbfpW0pbvaU" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/VbfpW0pbvaU/maxresdefault.jpg" width="220" height="320">
+    <h2> Stitches </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="7zp1TbLFPp8" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/7zp1TbLFPp8/maxresdefault.jpg" width="220" height="320">
+    <h2> Danza Kuduro </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="O-zpOMYRi0w" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/O-zpOMYRi0w/maxresdefault.jpg" width="220" height="320">
+    <h2> Fancy  </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="7PCkvCPvDXk" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/7PCkvCPvDXk/maxresdefault.jpg" width="220" height="320">
+    <h2> All About That Bass</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="gCYcHz2k5x0" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/gCYcHz2k5x0/hqdefault.jpg" width="220" height="320">
+    <h2> Animals </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="NUsoVlDFqZg" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/NUsoVlDFqZg/maxresdefault.jpg" width="220" height="320">
+    <h2> Bailando  </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="uO59tfQ2TbA" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/uO59tfQ2TbA/hqdefault.jpg" width="220" height="320">
+    <h2> Hey Mama </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="KWZGAExj-es" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/KWZGAExj-es/maxresdefault.jpg" width="220" height="320">
+    <h2> Elastic Heart </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="iOe6dI2JhgU" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/iOe6dI2JhgU/maxresdefault.jpg" width="220" height="320">
+    <h2> Vente Pa' Ca  </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="vjW8wmF5VWc" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/vjW8wmF5VWc/maxresdefault.jpg" width="220" height="320">
+    <h2> Watch Me </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="pRpeEdMmmQ0" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/pRpeEdMmmQ0/maxresdefault.jpg" width="220" height="320">
+    <h2> Waka Waka </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="0HDdjwpPM3Y" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/0HDdjwpPM3Y/maxresdefault.jpg" width="220" height="320">
+    <h2> Bang Bang </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="ebXbLfLACGM" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/ebXbLfLACGM/maxresdefault.jpg" width="220" height="320">
+    <h2> Summer</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="KQ6zr6kCPj8" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/KQ6zr6kCPj8/maxresdefault.jpg" width="220" height="320">
+    <h2> Party Rock Anthem </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="kkx-7fsiWgg" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/kkx-7fsiWgg/maxresdefault.jpg" width="220" height="320">
+    <h2> Hasta el Amanecer </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="bdOXnTbyk0g" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/bdOXnTbyk0g/maxresdefault.jpg" width="220" height="320">
+    <h2> Darte un Beso</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="fRh_vgS2dFE" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/fRh_vgS2dFE/maxresdefault.jpg" width="220" height="320">
+    <h2> Sorry </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="TapXs54Ah3E" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/TapXs54Ah3E/maxresdefault.jpg" width="220" height="320">
+    <h2> Ay Vamos</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="nntGTK2Fhb0" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/nntGTK2Fhb0/hqdefault.jpg" width="220" height="320">
+    <h2> "Where Are Ü Now" </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="foE1mO2yM04" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/foE1mO2yM04/maxresdefault.jpg" width="220" height="320">
+    <h2> I Took A Pill In Ibiza </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="7-7knsP2n5w" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/7-7knsP2n5w/maxresdefault.jpg" width="220" height="320">
+    <h2> La La La  </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="My2FRPA3Gf8" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/My2FRPA3Gf8/maxresdefault.jpg" width="220" height="320">
+    <h2> Wrecking Ball</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="450p7goxZqg" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/450p7goxZqg/maxresdefault.jpg" width="220" height="320">
+    <h2> All of Me</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="ASO_zypdnsQ" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/ASO_zypdnsQ/maxresdefault.jpg" width="220" height="320">
+    <h2> GENTLEMAN M/V</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="hXI8RQYC36Q" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/hXI8RQYC36Q/maxresdefault.jpg" width="220" height="320">
+    <h2> El Perdón </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="CevxZvSJLk8" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/CevxZvSJLk8/maxresdefault.jpg" width="220" height="320">
+    <h2> Roar </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="OPf0YbXqDm0" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/OPf0YbXqDm0/maxresdefault.jpg" width="220" height="320">
+    <h2> Uptown Funk </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="uelHwf8o7_U" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/uelHwf8o7_U/maxresdefault.jpg" width="220" height="320">
+    <h2> Love The Way You Lie </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="kOkQ4T5WO9E" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/kOkQ4T5WO9E/maxresdefault.jpg" width="220" height="320">
+    <h2> This Is What You Came For  </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="RqpKDkVzlqU" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/RqpKDkVzlqU/maxresdefault.jpg" width="220" height="320">
+    <h2> Picky</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="PJniSb91tvo" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/PJniSb91tvo/maxresdefault.jpg" width="220" height="320">
+    <h2> El Perdedor </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="8SbUC-UaAxE" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/8SbUC-UaAxE/maxresdefault.jpg" width="220" height="320">
+    <h2> November Rain</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="DK_0jXPuIr0" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/DK_0jXPuIr0/maxresdefault.jpg" width="220" height="320">
+    <h2> What Do You Mean?</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="CGyEd0aKWZE" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/CGyEd0aKWZE/maxresdefault.jpg" width="220" height="320">
+    <h2> Burn</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="lY2yjAdbvdQ" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/lY2yjAdbvdQ/maxresdefault.jpg" width="220" height="320">
+    <h2> Treat You Better</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="hHUbLv4ThOo" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/hHUbLv4ThOo/maxresdefault.jpg" width="220" height="320">
+    <h2> Timber </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="6Mgqbai3fKo" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/6Mgqbai3fKo/maxresdefault.jpg" width="220" height="320">
+    <h2> Chantaje  </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="8UVNT4wvIGY" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/8UVNT4wvIGY/maxresdefault.jpg" width="220" height="320">
+    <h2> Somebody That I Used To Know </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="t4H_Zoh7G5A" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/t4H_Zoh7G5A/maxresdefault.jpg" width="220" height="320">
+    <h2> On The Floor </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="RgKAFK5djSk" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/RgKAFK5djSk/maxresdefault.jpg" width="220" height="320">
+    <h2> See You Again </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="VMp55KH_3wo" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/VMp55KH_3wo/maxresdefault.jpg" width="220" height="320">
+    <h2> La Gozadera  </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="09R8_2nJtjg" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/09R8_2nJtjg/maxresdefault.jpg" width="220" height="320">
+    <h2> Sugar</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="lp-EO5I60KA" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/lp-EO5I60KA/maxresdefault.jpg" width="220" height="320">
+    <h2> Thinking Out Loud </h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="lBztnahrOFw" data-toggle="modal" data-target="#trailer">
+    <img src="https://i.ytimg.com/vi/lBztnahrOFw/maxresdefault.jpg" width="220" height="320">
+    <h2> La Mordidita  </h2>
+</div>
+
+    </div>
+  </body>
+</html>
