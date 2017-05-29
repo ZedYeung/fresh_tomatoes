@@ -14,7 +14,7 @@
         body {
             padding-top: 80px;
         }
-        #trailer .modal-dialog {
+        #item .modal-dialog {
             margin-top: 200px;
             width: 640px;
             height: 480px;
@@ -25,7 +25,7 @@
             right: -12px;
             z-index: 9001;
         }
-        #trailer-video {
+        #item-show {
             width: 100%;
             height: 100%;
         }
@@ -75,7 +75,7 @@
         li a:hover {
             background-color: #111;
         }
-        /* Change the current link color to #CC181E (red)
+        /* Change the current link color to #CC181E (red) */
         .active {
             background-color: #CC181E;
         }
@@ -85,14 +85,13 @@
         $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
             // Remove the src so the player itself gets removed, as this is the only
             // reliable way to ensure the video stops playing in IE
-            $("#trailer-video-container").empty();
+            $("#item-show-container").empty();
         });
         // Start playing the video whenever the trailer modal is opened
         $(document).on('click', '.item-tile', function (event) {
-            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
-            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
-            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
-              'id': 'trailer-video',
+            var sourceUrl = $(this).attr('data-source-url');
+            $("#item-show-container").empty().append($("<iframe></iframe>", {
+              'id': 'item-show',
               'type': 'text-html',
               'src': sourceUrl,
               'frameborder': 0
@@ -109,13 +108,13 @@
 
   <body>
     <!-- Trailer Video Modal -->
-    <div class="modal" id="trailer">
+    <div class="modal" id="item">
       <div class="modal-dialog">
         <div class="modal-content">
           <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
             <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
           </a>
-          <div class="scale-media" id="trailer-video-container">
+          <div class="scale-media" id="item-show-container">
           </div>
         </div>
       </div>
@@ -127,13 +126,15 @@
         <div class="container">
           <div class="navbar-header">
             <ul>
-              <li><a class="navbar-brand active" href="fresh_tomatoes.html">Fresh Tomatoes</a></li>
+              <li class="active"><a href="fresh_tomatoes.html">Fresh Tomatoes</a></li>
               
  <li><a href="Movie.html">Movie</a></li>
  
  <li><a href="Tv.html">Tv</a></li>
  
  <li><a href="Mv.html">Mv</a></li>
+ 
+ <li><a href="Book.html">Book</a></li>
  
             </ul>
           </div>
@@ -142,49 +143,64 @@
     </div>
     <div class="container">
       
-<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="SUXWAEX2jlg" data-toggle="modal" data-target="#trailer">
-    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BZGY5Y2RjMmItNDg5Yy00NjUwLThjMTEtNDc2OGUzNTBiYmM1XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_UX182_CR0,0,182,268_AL_.jpg" width="220" height="320">
-    <h2>Fight Club</h2>
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="http://www.youtube.com/embed/snDR7XsSkB4?autoplay=1&html5=1" data-toggle="modal" data-target="#item">
+    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMDg1MDgzMmQtNDhlYS00MzZiLTllZGItNzliZTE1ODBiZDQwXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_UX182_CR0,0,182,268_AL_.jpg" width="220" height="320">
+    <h2>Apocalypse Now</h2>
 </div>
 
-<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="owK1qxDselE" data-toggle="modal" data-target="#trailer">
-    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMDliMmNhNDEtODUyOS00MjNlLTgxODEtN2U3NzIxMGVkZTA1L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_UX182_CR0,0,182,268_AL_.jpg" width="220" height="320">
-    <h2>Gladiator</h2>
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="http://www.youtube.com/embed/Z2UWOeBcsJI?autoplay=1&html5=1" data-toggle="modal" data-target="#item">
+    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTZkZTBhYmUtMTIzNy00YTViLTg1OWItNGUwMmVlN2FjZTVkXkEyXkFqcGdeQXVyNDYyMDk5MTU@._V1_UX182_CR0,0,182,268_AL_.jpg" width="220" height="320">
+    <h2>2001: A Space Odyssey</h2>
 </div>
 
-<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="s7EdQ4FqbhY" data-toggle="modal" data-target="#trailer">
-    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTkxMTA5OTAzMl5BMl5BanBnXkFtZTgwNjA5MDc3NjE@._V1_UX182_CR0,0,182,268_AL_.jpg" width="220" height="320">
-    <h2>Pulp Fiction</h2>
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="http://www.youtube.com/embed/alIq_wG9FNk?autoplay=1&html5=1" data-toggle="modal" data-target="#item">
+    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjExMTg5OTU0NF5BMl5BanBnXkFtZTcwMjMxMzMzMw@@._V1_UX182_CR0,0,182,268_AL_.jpg" width="220" height="320">
+    <h2>WALL·E</h2>
 </div>
 
-<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="d3Hg6XHIUf8" data-toggle="modal" data-target="#trailer">
-    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BNzA2ZDk2ZTUtMWU2Yi00NDVmLTk1ODEtMmFmMjQyNWYzODI0XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_UX182_CR0,0,182,268_AL_.jpg" width="220" height="320">
-    <h2>Futurama season 5</h2>
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="http://www.youtube.com/embed/pPTi9L4Iko4?autoplay=1&html5=1" data-toggle="modal" data-target="#item">
+    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTgzNjAzMDE0NF5BMl5BanBnXkFtZTcwNTEyMzM3OA@@._V1_UY268_CR7,0,182,268_AL_.jpg" width="220" height="320">
+    <h2>The Office season 4</h2>
 </div>
 
-<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="0YLBweopCcw" data-toggle="modal" data-target="#trailer">
-    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTI3ODc2ODc0M15BMl5BanBnXkFtZTYwMjgzNjc3._V1_UX182_CR0,0,182,268_AL_.jpg" width="220" height="320">
-    <h2>Band of Brothers season 1</h2>
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="http://www.youtube.com/embed/4T57wpsLDZQ?autoplay=1&html5=1" data-toggle="modal" data-target="#item">
+    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTg4NzEyNzQ5OF5BMl5BanBnXkFtZTYwNTY3NDg4._V1._CR24,0,293,443_UX182_CR0,0,182,268_AL_.jpg" width="220" height="320">
+    <h2>Friends season 8</h2>
 </div>
 
-<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="9djCOPHOvOw" data-toggle="modal" data-target="#trailer">
-    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjA5MjUxNDgwNF5BMl5BanBnXkFtZTgwMDI5NjMwNDE@._V1_UY268_CR9,0,182,268_AL_.jpg" width="220" height="320">
-    <h2>Parks and Recreation season 1</h2>
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="http://www.youtube.com/embed/NCaYiGQzigo?autoplay=1&html5=1" data-toggle="modal" data-target="#item">
+    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTk1MjYzOTU2Nl5BMl5BanBnXkFtZTgwMzAxMTg5MTE@._V1_UX182_CR0,0,182,268_AL_.jpg" width="220" height="320">
+    <h2>Suits season 4</h2>
 </div>
 
-<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="QcIy9NiNbmo" data-toggle="modal" data-target="#trailer">
-    <img src="https://i.ytimg.com/vi/QcIy9NiNbmo/maxresdefault.jpg" width="220" height="320">
-    <h2> Bad Blood </h2>
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="http://www.youtube.com/embed/lp-EO5I60KA?autoplay=1&html5=1" data-toggle="modal" data-target="#item">
+    <img src="https://i.ytimg.com/vi/lp-EO5I60KA/maxresdefault.jpg" width="220" height="320">
+    <h2> Thinking Out Loud </h2>
 </div>
 
-<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="SmM0653YvXU" data-toggle="modal" data-target="#trailer">
-    <img src="https://i.ytimg.com/vi/SmM0653YvXU/maxresdefault.jpg" width="220" height="320">
-    <h2> Rain Over Me </h2>
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="http://www.youtube.com/embed/lBztnahrOFw?autoplay=1&html5=1" data-toggle="modal" data-target="#item">
+    <img src="https://i.ytimg.com/vi/lBztnahrOFw/maxresdefault.jpg" width="220" height="320">
+    <h2> La Mordidita  </h2>
 </div>
 
-<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="0KSOMA3QBU0" data-toggle="modal" data-target="#trailer">
-    <img src="https://i.ytimg.com/vi/0KSOMA3QBU0/maxresdefault.jpg" width="220" height="320">
-    <h2> Dark Horse  </h2>
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="http://www.youtube.com/embed/ebXbLfLACGM?autoplay=1&html5=1" data-toggle="modal" data-target="#item">
+    <img src="https://i.ytimg.com/vi/ebXbLfLACGM/maxresdefault.jpg" width="220" height="320">
+    <h2> Summer</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/pdf/Python_Cookbook.pdf" data-toggle="modal" data-target="#item">
+    <img src="https://img3.doubanio.com/mpic/s27879964.jpg" width="220" height="320">
+    <h2>Python_Cookbook</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/pdf/The_Algorithm_Design_Manual.pdf" data-toggle="modal" data-target="#item">
+    <img src="https://img3.doubanio.com/mpic/s10347625.jpg" width="220" height="320">
+    <h2>The_Algorithm_Design_Manual</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/pdf/Who_Moved_My_Cheese.pdf" data-toggle="modal" data-target="#item">
+    <img src="https://img3.doubanio.com/mpic/s3783103.jpg" width="220" height="320">
+    <h2>Who_Moved_My_Cheese</h2>
 </div>
 
     </div>

@@ -22,7 +22,7 @@ main_page_head = '''
         body {
             padding-top: 80px;
         }
-        #trailer .modal-dialog {
+        #item .modal-dialog {
             margin-top: 200px;
             width: 640px;
             height: 480px;
@@ -33,7 +33,7 @@ main_page_head = '''
             right: -12px;
             z-index: 9001;
         }
-        #trailer-video {
+        #item-show {
             width: 100%;
             height: 100%;
         }
@@ -83,7 +83,7 @@ main_page_head = '''
         li a:hover {
             background-color: #111;
         }
-        /* Change the current link color to #CC181E (red)
+        /* Change the current link color to #CC181E (red) */
         .active {
             background-color: #CC181E;
         }
@@ -93,14 +93,13 @@ main_page_head = '''
         $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
             // Remove the src so the player itself gets removed, as this is the only
             // reliable way to ensure the video stops playing in IE
-            $("#trailer-video-container").empty();
+            $("#item-show-container").empty();
         });
         // Start playing the video whenever the trailer modal is opened
         $(document).on('click', '.item-tile', function (event) {
-            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
-            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
-            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
-              'id': 'trailer-video',
+            var sourceUrl = $(this).attr('data-source-url');
+            $("#item-show-container").empty().append($("<iframe></iframe>", {
+              'id': 'item-show',
               'type': 'text-html',
               'src': sourceUrl,
               'frameborder': 0
@@ -121,13 +120,13 @@ main_page_head = '''
 main_page_content = '''
   <body>
     <!-- Trailer Video Modal -->
-    <div class="modal" id="trailer">
+    <div class="modal" id="item">
       <div class="modal-dialog">
         <div class="modal-content">
           <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
             <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
           </a>
-          <div class="scale-media" id="trailer-video-container">
+          <div class="scale-media" id="item-show-container">
           </div>
         </div>
       </div>
@@ -139,7 +138,7 @@ main_page_content = '''
         <div class="container">
           <div class="navbar-header">
             <ul>
-              <li><a class="navbar-brand active" href="fresh_tomatoes.html">Fresh Tomatoes</a></li>
+              <li class="active"><a href="fresh_tomatoes.html">Fresh Tomatoes</a></li>
               {navbar}
             </ul>
           </div>
@@ -160,7 +159,7 @@ navbar_content = '''
 
 # A single item entry html template
 tile_content = '''
-<div class="col-md-6 col-lg-4 item-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="{source_url}" data-toggle="modal" data-target="#item">
     <img src="{poster_image_url}" width="220" height="320">
     <h2>{title}</h2>
 </div>
@@ -170,8 +169,10 @@ tile_content = '''
 def create_tiles_content(items):
     # The HTML content for this section of the page
     content = ''
-    if not isinstance(items, item_class.Book):
-        for item in items:
+    print(type(items[0]))
+
+    for item in items:
+        if not isinstance(item, item_class.Book):
             # Extract the youtube ID from the url
             youtube_id_match = re.search(
                 r'(?<=v=)[^&#]+', item.url)
@@ -179,13 +180,15 @@ def create_tiles_content(items):
                 r'(?<=be/)[^&#]+', item.url)
             trailer_youtube_id = (youtube_id_match.group(0) if youtube_id_match
                                   else None)
+            source_url = 'http://www.youtube.com/embed/' + trailer_youtube_id + '?autoplay=1&html5=1'
 
-            # Append the tile for the item with its content filled in
-            content += tile_content.format(
-                title=item.title,
-                poster_image_url=item.poster,
-                trailer_youtube_id=trailer_youtube_id
-            )
+        # Append the tile for the item with its content filled in
+        content += tile_content.format(
+            title=item.title,
+            poster_image_url=item.poster,
+            source_url=item.url if isinstance(item, item_class.Book) else source_url
+        )
+
     return content
 
 

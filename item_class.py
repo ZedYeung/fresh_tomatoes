@@ -1,5 +1,4 @@
 #! python3
-
 class Item():
     def __init__(self, title, year, poster, url, summary):
         self.title = title
@@ -11,17 +10,20 @@ class Item():
     def show(self):
         webbrowser.open(self.url)
 
+
 class Mv(Item):
     def __init__(self, title, year, poster, url, summary, singer):
         self.singer = singer
         super(Mv, self).__init__(title, year, poster, url, summary)
 
+
 class Book(Item):
-    def __init__(self, author, publisher, page):
-        super(Book, self).__init__()
+    def __init__(self, title, year, poster, url, summary, author, publisher, page):
         self.author = author
         self.publisher = publisher
         self.page = page
+        super(Book, self).__init__(title, year, poster, url, summary)
+
 
 class Video(Item):
     def __init__(self, title, year, duration, poster, url, summary, stars):
