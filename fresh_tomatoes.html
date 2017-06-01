@@ -14,10 +14,15 @@
         body {
             padding-top: 80px;
         }
-        #item .modal-dialog {
+        #video .modal-dialog {
             margin-top: 200px;
             width: 640px;
             height: 480px;
+        }
+        #book .modal-dialog {
+            margin-top: 10px;
+            width: 800px;
+            height: 800px;
         }
         .hanging-close {
             position: absolute;
@@ -85,12 +90,12 @@
         $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
             // Remove the src so the player itself gets removed, as this is the only
             // reliable way to ensure the video stops playing in IE
-            $("#item-show-container").empty();
+            $(".scale-media").empty();
         });
         // Start playing the video whenever the trailer modal is opened
         $(document).on('click', '.item-tile', function (event) {
             var sourceUrl = $(this).attr('data-source-url');
-            $("#item-show-container").empty().append($("<iframe></iframe>", {
+            $(".scale-media").empty().append($("<iframe></iframe>", {
               'id': 'item-show',
               'type': 'text-html',
               'src': sourceUrl,
@@ -107,14 +112,27 @@
 </head>
 
   <body>
-    <!-- Trailer Video Modal -->
-    <div class="modal" id="item">
+    <!-- Video Modal -->
+    <div class="modal" id="video">
       <div class="modal-dialog">
         <div class="modal-content">
           <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
             <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
           </a>
           <div class="scale-media" id="item-show-container">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Book Modal -->
+    <div class="modal" id="book">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+          </a>
+          <div class="scale-media">
           </div>
         </div>
       </div>
@@ -143,64 +161,64 @@
     </div>
     <div class="container">
       
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="http://www.youtube.com/embed/snDR7XsSkB4?autoplay=1&html5=1" data-toggle="modal" data-target="#item">
-    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMDg1MDgzMmQtNDhlYS00MzZiLTllZGItNzliZTE1ODBiZDQwXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_UX182_CR0,0,182,268_AL_.jpg" width="220" height="320">
-    <h2>Apocalypse Now</h2>
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="http://www.youtube.com/embed/EqYiSlkvRuw?autoplay=1&html5=1" data-toggle="modal" data-target="#video">
+    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTU3ODg2NjQ5NF5BMl5BanBnXkFtZTcwMDEwODgzMQ@@._V1_UY268_CR0,0,182,268_AL_.jpg" width="220" height="320">
+    <h2>Pan's Labyrinth</h2>
 </div>
 
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="http://www.youtube.com/embed/Z2UWOeBcsJI?autoplay=1&html5=1" data-toggle="modal" data-target="#item">
-    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTZkZTBhYmUtMTIzNy00YTViLTg1OWItNGUwMmVlN2FjZTVkXkEyXkFqcGdeQXVyNDYyMDk5MTU@._V1_UX182_CR0,0,182,268_AL_.jpg" width="220" height="320">
-    <h2>2001: A Space Odyssey</h2>
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="http://www.youtube.com/embed/bLvqoHBptjg?autoplay=1&html5=1" data-toggle="modal" data-target="#video">
+    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BYThjM2MwZGMtMzg3Ny00NGRkLWE4M2EtYTBiNWMzOTY0YTI4XkEyXkFqcGdeQXVyNDYyMDk5MTU@._V1_UY268_CR10,0,182,268_AL_.jpg" width="220" height="320">
+    <h2>Forrest Gump</h2>
 </div>
 
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="http://www.youtube.com/embed/alIq_wG9FNk?autoplay=1&html5=1" data-toggle="modal" data-target="#item">
-    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMjExMTg5OTU0NF5BMl5BanBnXkFtZTcwMjMxMzMzMw@@._V1_UX182_CR0,0,182,268_AL_.jpg" width="220" height="320">
-    <h2>WALL·E</h2>
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="http://www.youtube.com/embed/gCcx85zbxz4?autoplay=1&html5=1" data-toggle="modal" data-target="#video">
+    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BNzQzMzJhZTEtOWM4NS00MTdhLTg0YjgtMjM4MDRkZjUwZDBlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_UX182_CR0,0,182,268_AL_.jpg" width="220" height="320">
+    <h2>Blade Runner</h2>
 </div>
 
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="http://www.youtube.com/embed/pPTi9L4Iko4?autoplay=1&html5=1" data-toggle="modal" data-target="#item">
-    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTgzNjAzMDE0NF5BMl5BanBnXkFtZTcwNTEyMzM3OA@@._V1_UY268_CR7,0,182,268_AL_.jpg" width="220" height="320">
-    <h2>The Office season 4</h2>
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="http://www.youtube.com/embed/WBbVeygyJhQ?autoplay=1&html5=1" data-toggle="modal" data-target="#video">
+    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BZWY4ODY3ZTAtODc2NC00ZDQ5LWE2ZTItZWYzOWVhNjU4OTk0XkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_UX182_CR0,0,182,268_AL_.jpg" width="220" height="320">
+    <h2>South Park season 1</h2>
 </div>
 
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="http://www.youtube.com/embed/4T57wpsLDZQ?autoplay=1&html5=1" data-toggle="modal" data-target="#item">
-    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTg4NzEyNzQ5OF5BMl5BanBnXkFtZTYwNTY3NDg4._V1._CR24,0,293,443_UX182_CR0,0,182,268_AL_.jpg" width="220" height="320">
-    <h2>Friends season 8</h2>
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="http://www.youtube.com/embed/BTnot--8350?autoplay=1&html5=1" data-toggle="modal" data-target="#video">
+    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BYjFkMTlkYWUtZWFhNy00M2FmLThiOTYtYTRiYjVlZWYxNmJkXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_UX182_CR0,0,182,268_AL_.jpg" width="220" height="320">
+    <h2>The Simpsons season 2</h2>
 </div>
 
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="http://www.youtube.com/embed/NCaYiGQzigo?autoplay=1&html5=1" data-toggle="modal" data-target="#item">
-    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTk1MjYzOTU2Nl5BMl5BanBnXkFtZTgwMzAxMTg5MTE@._V1_UX182_CR0,0,182,268_AL_.jpg" width="220" height="320">
-    <h2>Suits season 4</h2>
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="http://www.youtube.com/embed/1mgXpnfw6Wk?autoplay=1&html5=1" data-toggle="modal" data-target="#video">
+    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTU0ODQ4NDg2OF5BMl5BanBnXkFtZTgwNzczNTE4OTE@._V1_UX182_CR0,0,182,268_AL_.jpg" width="220" height="320">
+    <h2>Narcos season 4</h2>
 </div>
 
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="http://www.youtube.com/embed/lp-EO5I60KA?autoplay=1&html5=1" data-toggle="modal" data-target="#item">
-    <img src="https://i.ytimg.com/vi/lp-EO5I60KA/maxresdefault.jpg" width="220" height="320">
-    <h2> Thinking Out Loud </h2>
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="http://www.youtube.com/embed/fLexgOxsZu0?autoplay=1&html5=1" data-toggle="modal" data-target="#video">
+    <img src="https://i.ytimg.com/vi/fLexgOxsZu0/maxresdefault.jpg" width="220" height="320">
+    <h2> The Lazy Song </h2>
 </div>
 
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="http://www.youtube.com/embed/lBztnahrOFw?autoplay=1&html5=1" data-toggle="modal" data-target="#item">
-    <img src="https://i.ytimg.com/vi/lBztnahrOFw/maxresdefault.jpg" width="220" height="320">
-    <h2> La Mordidita  </h2>
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="http://www.youtube.com/embed/EgqUJOudrcM?autoplay=1&html5=1" data-toggle="modal" data-target="#video">
+    <img src="https://i.ytimg.com/vi/EgqUJOudrcM/maxresdefault.jpg" width="220" height="320">
+    <h2> How Deep Is Your Love</h2>
 </div>
 
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="http://www.youtube.com/embed/ebXbLfLACGM?autoplay=1&html5=1" data-toggle="modal" data-target="#item">
-    <img src="https://i.ytimg.com/vi/ebXbLfLACGM/maxresdefault.jpg" width="220" height="320">
-    <h2> Summer</h2>
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="http://www.youtube.com/embed/AMTAQ-AJS4Y?autoplay=1&html5=1" data-toggle="modal" data-target="#video">
+    <img src="https://i.ytimg.com/vi/AMTAQ-AJS4Y/maxresdefault.jpg" width="220" height="320">
+    <h2> Andas En Mi Cabeza </h2>
 </div>
 
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/pdf/Python_Cookbook.pdf" data-toggle="modal" data-target="#item">
-    <img src="https://img3.doubanio.com/mpic/s27879964.jpg" width="220" height="320">
-    <h2>Python_Cookbook</h2>
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Discrete_Mathematics_and_Its_Applications_Seventh_Edition.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s7069213.jpg" width="220" height="320">
+    <h2>Discrete Mathematics and Its Applications Seventh Edition</h2>
 </div>
 
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/pdf/The_Algorithm_Design_Manual.pdf" data-toggle="modal" data-target="#item">
-    <img src="https://img3.doubanio.com/mpic/s10347625.jpg" width="220" height="320">
-    <h2>The_Algorithm_Design_Manual</h2>
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Programming_Collective_Intelligence.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s2653941.jpg" width="220" height="320">
+    <h2>Programming Collective Intelligence</h2>
 </div>
 
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/pdf/Who_Moved_My_Cheese.pdf" data-toggle="modal" data-target="#item">
-    <img src="https://img3.doubanio.com/mpic/s3783103.jpg" width="220" height="320">
-    <h2>Who_Moved_My_Cheese</h2>
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Natural_Language_Processing_with_Python.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s3751041.jpg" width="220" height="320">
+    <h2>Natural Language Processing with Python</h2>
 </div>
 
     </div>

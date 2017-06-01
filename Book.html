@@ -1,0 +1,291 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Fresh Tomatoes!</title>
+
+    <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <style type="text/css" media="screen">
+        body {
+            padding-top: 80px;
+        }
+        #video .modal-dialog {
+            margin-top: 200px;
+            width: 640px;
+            height: 480px;
+        }
+        #book .modal-dialog {
+            margin-top: 10px;
+            width: 800px;
+            height: 800px;
+        }
+        .hanging-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            z-index: 9001;
+        }
+        #item-show {
+            width: 100%;
+            height: 100%;
+        }
+        .item-tile {
+            margin-bottom: 50px;
+            padding-top: 20px;
+        }
+        .item-tile:hover {
+            background-color: #EEE;
+            cursor: pointer;
+        }
+        .scale-media {
+            padding-bottom: 56.25%;
+            position: relative;
+        }
+        .scale-media iframe {
+            border: none;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-color: white;
+        }
+        /* navigation bar is mainly from https://www.w3schools.com/css/css_navbar.asp */
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        /* Change the link color to #111 (black) on hover */
+        li a:hover {
+            background-color: #111;
+        }
+        /* Change the current link color to #CC181E (red) */
+        .active {
+            background-color: #CC181E;
+        }
+    </style>
+    <script type="text/javascript" charset="utf-8">
+        // Pause the video when the modal is closed
+        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
+            // Remove the src so the player itself gets removed, as this is the only
+            // reliable way to ensure the video stops playing in IE
+            $(".scale-media").empty();
+        });
+        // Start playing the video whenever the trailer modal is opened
+        $(document).on('click', '.item-tile', function (event) {
+            var sourceUrl = $(this).attr('data-source-url');
+            $(".scale-media").empty().append($("<iframe></iframe>", {
+              'id': 'item-show',
+              'type': 'text-html',
+              'src': sourceUrl,
+              'frameborder': 0
+            }));
+        });
+        // Animate in the items when the page loads
+        $(document).ready(function () {
+          $('.item-tile').hide().first().show("fast", function showNext() {
+            $(this).next("div").show("fast", showNext);
+          });
+        });
+    </script>
+</head>
+
+  <body>
+    <!-- Video Modal -->
+    <div class="modal" id="video">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+          </a>
+          <div class="scale-media" id="item-show-container">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Book Modal -->
+    <div class="modal" id="book">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+          </a>
+          <div class="scale-media">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Page Content -->
+    <div class="container">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <ul>
+              <li class="active"><a href="fresh_tomatoes.html">Fresh Tomatoes</a></li>
+              
+ <li><a href="Movie.html">Movie</a></li>
+ 
+ <li><a href="Tv.html">Tv</a></li>
+ 
+ <li><a href="Mv.html">Mv</a></li>
+ 
+ <li><a href="Book.html">Book</a></li>
+ 
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Discrete_Mathematics_and_Its_Applications_Seventh_Edition.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s7069213.jpg" width="220" height="320">
+    <h2>Discrete Mathematics and Its Applications Seventh Edition</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Programming_Collective_Intelligence.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s2653941.jpg" width="220" height="320">
+    <h2>Programming Collective Intelligence</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Natural_Language_Processing_with_Python.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s3751041.jpg" width="220" height="320">
+    <h2>Natural Language Processing with Python</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Linear_Algebra_Done_Right.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s4252201.jpg" width="220" height="320">
+    <h2>Linear Algebra Done Right</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Doing_Data_Science.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s28709851.jpg" width="220" height="320">
+    <h2>Doing Data Science</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Zero_to_One.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img1.doubanio.com/lpic/s27463048.jpg" width="220" height="320">
+    <h2>Zero to One</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Python_for_Data_Analysis.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img1.doubanio.com/lpic/s27033759.jpg" width="220" height="320">
+    <h2>Python for Data Analysis</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Programming_Pearls.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img1.doubanio.com/lpic/s27160437.jpg" width="220" height="320">
+    <h2>Programming Pearls</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Head_First_Data_Analysis.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img1.doubanio.com/lpic/s7057777.jpg" width="220" height="320">
+    <h2>Head First Data Analysis</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/All_Men_Are_Brothers_-_Shui_Hu_Chuan.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img1.doubanio.com/lpic/s3154577.jpg" width="220" height="320">
+    <h2>All Men Are Brothers - Shui Hu Chuan</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/The_Algorithm_Design_Manual.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s10347625.jpg" width="220" height="320">
+    <h2>The Algorithm Design Manual</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Python_for_Finance.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s28339482.jpg" width="220" height="320">
+    <h2>Python for Finance</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Who_Moved_My_Cheese.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s3783103.jpg" width="220" height="320">
+    <h2>Who Moved My Cheese</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Algorithms.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s4656875.jpg" width="220" height="320">
+    <h2>Algorithms</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/R_in_Action.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img1.doubanio.com/lpic/s28293087.jpg" width="220" height="320">
+    <h2>R in Action</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/JavaScript:_The_Definitive_Guide,_5th_Edition.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img1.doubanio.com/lpic/s4251169.jpg" width="220" height="320">
+    <h2>JavaScript: The Definitive Guide, 5th Edition</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Mining_the_Social_Web.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s27163803.jpg" width="220" height="320">
+    <h2>Mining the Social Web</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/More_Programming_Pearls.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s7073511.jpg" width="220" height="320">
+    <h2>More Programming Pearls</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Lean_In.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img1.doubanio.com/lpic/s28023208.jpg" width="220" height="320">
+    <h2>Lean In</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Machine_Learning_in_Action.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s9015252.jpg" width="220" height="320">
+    <h2>Machine Learning in Action</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Web_Scraping_with_Python.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img1.doubanio.com/lpic/s28279508.jpg" width="220" height="320">
+    <h2>Web Scraping with Python</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/An_Introduction_to_Probability_Theory_and_Its_Applications,_Vol._1,_3rd_Edition.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img1.doubanio.com/lpic/s3205678.jpg" width="220" height="320">
+    <h2>An Introduction to Probability Theory and Its Applications, Vol. 1, 3rd Edition</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Python_Cookbook.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s27879964.jpg" width="220" height="320">
+    <h2>Python Cookbook</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Introduction_to_Algorithms,_Third_Edition_(International_Edition).pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s4272330.jpg" width="220" height="320">
+    <h2>Introduction to Algorithms, Third Edition (International Edition)</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Practical_Data_Science_Cookbook_-_Real-World_Data_Science_Projects_to_Help_You_Get_Your_Hands_On_Your_Data.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s27699174.jpg" width="220" height="320">
+    <h2>Practical Data Science Cookbook - Real-World Data Science Projects to Help You Get Your Hands On Your Data</h2>
+</div>
+
+    </div>
+  </body>
+</html>

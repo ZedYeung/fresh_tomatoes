@@ -22,10 +22,15 @@ main_page_head = '''
         body {
             padding-top: 80px;
         }
-        #item .modal-dialog {
+        #video .modal-dialog {
             margin-top: 200px;
             width: 640px;
             height: 480px;
+        }
+        #book .modal-dialog {
+            margin-top: 10px;
+            width: 800px;
+            height: 800px;
         }
         .hanging-close {
             position: absolute;
@@ -93,12 +98,12 @@ main_page_head = '''
         $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
             // Remove the src so the player itself gets removed, as this is the only
             // reliable way to ensure the video stops playing in IE
-            $("#item-show-container").empty();
+            $(".scale-media").empty();
         });
         // Start playing the video whenever the trailer modal is opened
         $(document).on('click', '.item-tile', function (event) {
             var sourceUrl = $(this).attr('data-source-url');
-            $("#item-show-container").empty().append($("<iframe></iframe>", {
+            $(".scale-media").empty().append($("<iframe></iframe>", {
               'id': 'item-show',
               'type': 'text-html',
               'src': sourceUrl,
@@ -119,14 +124,27 @@ main_page_head = '''
 # The main page layout and title bar
 main_page_content = '''
   <body>
-    <!-- Trailer Video Modal -->
-    <div class="modal" id="item">
+    <!-- Video Modal -->
+    <div class="modal" id="video">
       <div class="modal-dialog">
         <div class="modal-content">
           <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
             <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
           </a>
           <div class="scale-media" id="item-show-container">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Book Modal -->
+    <div class="modal" id="book">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+          </a>
+          <div class="scale-media">
           </div>
         </div>
       </div>
@@ -159,7 +177,7 @@ navbar_content = '''
 
 # A single item entry html template
 tile_content = '''
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="{source_url}" data-toggle="modal" data-target="#item">
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="{source_url}" data-toggle="modal" data-target="#{modal_class}">
     <img src="{poster_image_url}" width="220" height="320">
     <h2>{title}</h2>
 </div>
@@ -169,7 +187,6 @@ tile_content = '''
 def create_tiles_content(items):
     # The HTML content for this section of the page
     content = ''
-    print(type(items[0]))
 
     for item in items:
         if not isinstance(item, item_class.Book):
@@ -186,7 +203,8 @@ def create_tiles_content(items):
         content += tile_content.format(
             title=item.title,
             poster_image_url=item.poster,
-            source_url=item.url if isinstance(item, item_class.Book) else source_url
+            source_url=item.url if isinstance(item, item_class.Book) else source_url,
+            modal_class='book' if isinstance(item, item_class.Book) else 'video'
         )
 
     return content

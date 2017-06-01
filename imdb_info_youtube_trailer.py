@@ -54,7 +54,7 @@ def get_youtube_url(video, args):
 
 def get_youtube_video(type):
     videos = []
-    with open(type + 's_imdb.json') as vj:
+    with open(os.path.abspath(os.path.join('data', type + 's_imdb.json'))) as vj:
         videos_raw = json.load(vj)
         for video in videos_raw:
             # video info provided to youtube_search
@@ -75,7 +75,7 @@ def get_youtube_video(type):
                     videos.append(new_video)
 
         # write to the new json file
-        with open(type + 's_youtube.json', 'w') as f:
+        with open(os.path.abspath(os.path.join('data', type + 's_youtube.json')), 'w') as f:
             f.write(json.dumps(videos))
 
 

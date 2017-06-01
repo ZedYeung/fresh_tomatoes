@@ -8,6 +8,7 @@
 # I still have no idea why
 import time
 import json
+import os
 import requests
 from bs4 import BeautifulSoup
 
@@ -98,9 +99,9 @@ def scrawler(url, top, type):
 
 if __name__ == '__main__':
     scrawler(movie_url, 100, 'movie')
-    with open('movies_imdb.json', 'w') as m:
+    with open(os.path.abspath(os.path.join('data', 'movies_imdb.json')), 'w') as m:
         m.write(json.dumps(movies))
 
     scrawler(tv_url, 50, 'tv')
-    with open('tv_shows_imdb.json', 'w') as t:
+    with open(os.path.abspath(os.path.join('data', 'tv_shows_imdb.json')), 'w') as t:
         t.write(json.dumps(tv_shows))

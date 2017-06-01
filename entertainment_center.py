@@ -12,8 +12,9 @@ tv_shows = []
 mv = []
 books = []
 
+
 def gen_video_class(type):
-    with open(type + 's_youtube.json') as vj:
+    with open(os.path.abspath(os.path.join('data', type + 's_youtube.json'))) as vj:
         videos_raw = json.load(vj)
         for video in videos_raw:
             title = video['title'].replace(' ', '_')
@@ -27,8 +28,8 @@ def gen_video_class(type):
 # Problem: can't play mv from VEVO
 # This video contains content from VEVO.
 # It is restricted from playback on certain sites or applications.
-for mv_json in os.listdir('mv'):
-    with open(os.path.abspath('.') + '/mv/' + mv_json) as mj:
+for mv_json in os.listdir('./data/mv'):
+    with open(os.path.abspath(os.path.join('data', 'mv', mv_json))) as mj:
         mv_raw = json.load(mj)
         # cleaning
         title = mv_raw['title']
@@ -45,18 +46,18 @@ for mv_json in os.listdir('mv'):
                             summary, singer)
         mv.append(locals()[summary])
 
-with open(os.path.abspath('./data/origin_book_info.json')) as obij:
+with open(os.path.abspath(os.path.join('data', 'origin_book_info.json'))) as obij:
     books_info = json.load(obij)
     for book_info in books_info:
         title = book_info['title'].replace(' ', '_')
         year = book_info['pubdate'][:4]
-        poster = book_info['image']
-        url = os.path.abspath(os.path.join('pdf', title + '.pdf'))
+        poster = book_info['images']['large']
+        url = os.path.abspath(os.path.join('data', 'pdf', title + '.pdf'))
         summary = book_info['summary']
         author = book_info['author']
         publisher = book_info['publisher']
         page = book_info['pages']
-        locals()[title] = item_class.Book(title, year, poster, url, summary, author, publisher, page)
+        locals()[title] = item_class.Book(book_info['title'], year, poster, url, summary, author, publisher, page)
         books.append(locals()[title])
 
 gen_video_class('movie')
