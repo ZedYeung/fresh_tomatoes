@@ -13,3 +13,10 @@ client_secret.json
 *.bak
 
 *.db
+
+# Getting books info
+data/book_info.json
+get_douban_books_info.py
+get_html.py
+get_pdf.py
+pylibgen.py
