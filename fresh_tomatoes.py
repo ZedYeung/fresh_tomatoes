@@ -103,12 +103,22 @@ main_page_head = '''
         // Start playing the video whenever the trailer modal is opened
         $(document).on('click', '.item-tile', function (event) {
             var sourceUrl = $(this).attr('data-source-url');
-            $(".scale-media").empty().append($("<iframe></iframe>", {
-              'id': 'item-show',
-              'type': 'text-html',
-              'src': sourceUrl,
-              'frameborder': 0
-            }));
+            var type = $(this).attr('data-target');
+            if (type === '#video') {
+                $("#video-show-container").empty().append($("<iframe></iframe>", {
+                  'id': 'item-show',
+                  'type': 'text-html',
+                  'src': sourceUrl,
+                  'frameborder': 0
+                }));
+            } else {
+                $("#book-show-container").empty().append($("<iframe></iframe>", {
+                  'id': 'item-show',
+                  'type': 'text-html',
+                  'src': sourceUrl,
+                  'frameborder': 0
+                }));
+            }
         });
         // Animate in the items when the page loads
         $(document).ready(function () {
@@ -131,7 +141,7 @@ main_page_content = '''
           <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
             <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
           </a>
-          <div class="scale-media" id="item-show-container">
+          <div class="scale-media" id="video-show-container">
           </div>
         </div>
       </div>
@@ -144,7 +154,7 @@ main_page_content = '''
           <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
             <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
           </a>
-          <div class="scale-media">
+          <div class="scale-media" id="book-show-container">
           </div>
         </div>
       </div>

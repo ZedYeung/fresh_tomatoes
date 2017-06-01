@@ -95,12 +95,22 @@
         // Start playing the video whenever the trailer modal is opened
         $(document).on('click', '.item-tile', function (event) {
             var sourceUrl = $(this).attr('data-source-url');
-            $(".scale-media").empty().append($("<iframe></iframe>", {
-              'id': 'item-show',
-              'type': 'text-html',
-              'src': sourceUrl,
-              'frameborder': 0
-            }));
+            var type = $(this).attr('data-target');
+            if (type === '#video') {
+                $("#video-show-container").empty().append($("<iframe></iframe>", {
+                  'id': 'item-show',
+                  'type': 'text-html',
+                  'src': sourceUrl,
+                  'frameborder': 0
+                }));
+            } else {
+                $("#book-show-container").empty().append($("<iframe></iframe>", {
+                  'id': 'item-show',
+                  'type': 'text-html',
+                  'src': sourceUrl,
+                  'frameborder': 0
+                }));
+            }
         });
         // Animate in the items when the page loads
         $(document).ready(function () {
@@ -119,7 +129,7 @@
           <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
             <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
           </a>
-          <div class="scale-media" id="item-show-container">
+          <div class="scale-media" id="video-show-container">
           </div>
         </div>
       </div>
@@ -132,7 +142,7 @@
           <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
             <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
           </a>
-          <div class="scale-media">
+          <div class="scale-media" id="book-show-container">
           </div>
         </div>
       </div>
@@ -161,79 +171,9 @@
     </div>
     <div class="container">
       
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Discrete_Mathematics_and_Its_Applications_Seventh_Edition.pdf" data-toggle="modal" data-target="#book">
-    <img src="https://img3.doubanio.com/lpic/s7069213.jpg" width="220" height="320">
-    <h2>Discrete Mathematics and Its Applications Seventh Edition</h2>
-</div>
-
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Programming_Collective_Intelligence.pdf" data-toggle="modal" data-target="#book">
-    <img src="https://img3.doubanio.com/lpic/s2653941.jpg" width="220" height="320">
-    <h2>Programming Collective Intelligence</h2>
-</div>
-
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Natural_Language_Processing_with_Python.pdf" data-toggle="modal" data-target="#book">
-    <img src="https://img3.doubanio.com/lpic/s3751041.jpg" width="220" height="320">
-    <h2>Natural Language Processing with Python</h2>
-</div>
-
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Linear_Algebra_Done_Right.pdf" data-toggle="modal" data-target="#book">
-    <img src="https://img3.doubanio.com/lpic/s4252201.jpg" width="220" height="320">
-    <h2>Linear Algebra Done Right</h2>
-</div>
-
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Doing_Data_Science.pdf" data-toggle="modal" data-target="#book">
-    <img src="https://img3.doubanio.com/lpic/s28709851.jpg" width="220" height="320">
-    <h2>Doing Data Science</h2>
-</div>
-
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Zero_to_One.pdf" data-toggle="modal" data-target="#book">
-    <img src="https://img1.doubanio.com/lpic/s27463048.jpg" width="220" height="320">
-    <h2>Zero to One</h2>
-</div>
-
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Python_for_Data_Analysis.pdf" data-toggle="modal" data-target="#book">
-    <img src="https://img1.doubanio.com/lpic/s27033759.jpg" width="220" height="320">
-    <h2>Python for Data Analysis</h2>
-</div>
-
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Programming_Pearls.pdf" data-toggle="modal" data-target="#book">
-    <img src="https://img1.doubanio.com/lpic/s27160437.jpg" width="220" height="320">
-    <h2>Programming Pearls</h2>
-</div>
-
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Head_First_Data_Analysis.pdf" data-toggle="modal" data-target="#book">
-    <img src="https://img1.doubanio.com/lpic/s7057777.jpg" width="220" height="320">
-    <h2>Head First Data Analysis</h2>
-</div>
-
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/All_Men_Are_Brothers_-_Shui_Hu_Chuan.pdf" data-toggle="modal" data-target="#book">
-    <img src="https://img1.doubanio.com/lpic/s3154577.jpg" width="220" height="320">
-    <h2>All Men Are Brothers - Shui Hu Chuan</h2>
-</div>
-
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/The_Algorithm_Design_Manual.pdf" data-toggle="modal" data-target="#book">
-    <img src="https://img3.doubanio.com/lpic/s10347625.jpg" width="220" height="320">
-    <h2>The Algorithm Design Manual</h2>
-</div>
-
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Python_for_Finance.pdf" data-toggle="modal" data-target="#book">
-    <img src="https://img3.doubanio.com/lpic/s28339482.jpg" width="220" height="320">
-    <h2>Python for Finance</h2>
-</div>
-
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Who_Moved_My_Cheese.pdf" data-toggle="modal" data-target="#book">
-    <img src="https://img3.doubanio.com/lpic/s3783103.jpg" width="220" height="320">
-    <h2>Who Moved My Cheese</h2>
-</div>
-
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Algorithms.pdf" data-toggle="modal" data-target="#book">
-    <img src="https://img3.doubanio.com/lpic/s4656875.jpg" width="220" height="320">
-    <h2>Algorithms</h2>
-</div>
-
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/R_in_Action.pdf" data-toggle="modal" data-target="#book">
-    <img src="https://img1.doubanio.com/lpic/s28293087.jpg" width="220" height="320">
-    <h2>R in Action</h2>
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Python_Cookbook.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s27879964.jpg" width="220" height="320">
+    <h2>Python Cookbook</h2>
 </div>
 
 <div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/JavaScript:_The_Definitive_Guide,_5th_Edition.pdf" data-toggle="modal" data-target="#book">
@@ -241,9 +181,9 @@
     <h2>JavaScript: The Definitive Guide, 5th Edition</h2>
 </div>
 
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Mining_the_Social_Web.pdf" data-toggle="modal" data-target="#book">
-    <img src="https://img3.doubanio.com/lpic/s27163803.jpg" width="220" height="320">
-    <h2>Mining the Social Web</h2>
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Lean_In.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img1.doubanio.com/lpic/s28023208.jpg" width="220" height="320">
+    <h2>Lean In</h2>
 </div>
 
 <div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/More_Programming_Pearls.pdf" data-toggle="modal" data-target="#book">
@@ -251,14 +191,34 @@
     <h2>More Programming Pearls</h2>
 </div>
 
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Lean_In.pdf" data-toggle="modal" data-target="#book">
-    <img src="https://img1.doubanio.com/lpic/s28023208.jpg" width="220" height="320">
-    <h2>Lean In</h2>
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/All_Men_Are_Brothers_-_Shui_Hu_Chuan.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img1.doubanio.com/lpic/s3154577.jpg" width="220" height="320">
+    <h2>All Men Are Brothers - Shui Hu Chuan</h2>
 </div>
 
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Machine_Learning_in_Action.pdf" data-toggle="modal" data-target="#book">
-    <img src="https://img3.doubanio.com/lpic/s9015252.jpg" width="220" height="320">
-    <h2>Machine Learning in Action</h2>
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/R_in_Action.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img1.doubanio.com/lpic/s28293087.jpg" width="220" height="320">
+    <h2>R in Action</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Linear_Algebra_Done_Right.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s4252201.jpg" width="220" height="320">
+    <h2>Linear Algebra Done Right</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Who_Moved_My_Cheese.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s3783103.jpg" width="220" height="320">
+    <h2>Who Moved My Cheese</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Zero_to_One.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img1.doubanio.com/lpic/s27463048.jpg" width="220" height="320">
+    <h2>Zero to One</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Discrete_Mathematics_and_Its_Applications_Seventh_Edition.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s7069213.jpg" width="220" height="320">
+    <h2>Discrete Mathematics and Its Applications Seventh Edition</h2>
 </div>
 
 <div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Web_Scraping_with_Python.pdf" data-toggle="modal" data-target="#book">
@@ -271,9 +231,59 @@
     <h2>An Introduction to Probability Theory and Its Applications, Vol. 1, 3rd Edition</h2>
 </div>
 
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Python_Cookbook.pdf" data-toggle="modal" data-target="#book">
-    <img src="https://img3.doubanio.com/lpic/s27879964.jpg" width="220" height="320">
-    <h2>Python Cookbook</h2>
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Doing_Data_Science.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s28709851.jpg" width="220" height="320">
+    <h2>Doing Data Science</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Machine_Learning_in_Action.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s9015252.jpg" width="220" height="320">
+    <h2>Machine Learning in Action</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Programming_Collective_Intelligence.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s2653941.jpg" width="220" height="320">
+    <h2>Programming Collective Intelligence</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Mining_the_Social_Web.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s27163803.jpg" width="220" height="320">
+    <h2>Mining the Social Web</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Python_for_Data_Analysis.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img1.doubanio.com/lpic/s27033759.jpg" width="220" height="320">
+    <h2>Python for Data Analysis</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/The_Algorithm_Design_Manual.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s10347625.jpg" width="220" height="320">
+    <h2>The Algorithm Design Manual</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Algorithms.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s4656875.jpg" width="220" height="320">
+    <h2>Algorithms</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Programming_Pearls.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img1.doubanio.com/lpic/s27160437.jpg" width="220" height="320">
+    <h2>Programming Pearls</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Python_for_Finance.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s28339482.jpg" width="220" height="320">
+    <h2>Python for Finance</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Natural_Language_Processing_with_Python.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s3751041.jpg" width="220" height="320">
+    <h2>Natural Language Processing with Python</h2>
+</div>
+
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Practical_Data_Science_Cookbook_-_Real-World_Data_Science_Projects_to_Help_You_Get_Your_Hands_On_Your_Data.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img3.doubanio.com/lpic/s27699174.jpg" width="220" height="320">
+    <h2>Practical Data Science Cookbook - Real-World Data Science Projects to Help You Get Your Hands On Your Data</h2>
 </div>
 
 <div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Introduction_to_Algorithms,_Third_Edition_(International_Edition).pdf" data-toggle="modal" data-target="#book">
@@ -281,9 +291,9 @@
     <h2>Introduction to Algorithms, Third Edition (International Edition)</h2>
 </div>
 
-<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Practical_Data_Science_Cookbook_-_Real-World_Data_Science_Projects_to_Help_You_Get_Your_Hands_On_Your_Data.pdf" data-toggle="modal" data-target="#book">
-    <img src="https://img3.doubanio.com/lpic/s27699174.jpg" width="220" height="320">
-    <h2>Practical Data Science Cookbook - Real-World Data Science Projects to Help You Get Your Hands On Your Data</h2>
+<div class="col-md-6 col-lg-4 item-tile text-center" data-source-url="/media/yedthon/ubuntu/item_show/data/pdf/Head_First_Data_Analysis.pdf" data-toggle="modal" data-target="#book">
+    <img src="https://img1.doubanio.com/lpic/s7057777.jpg" width="220" height="320">
+    <h2>Head First Data Analysis</h2>
 </div>
 
     </div>

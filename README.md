@@ -2,6 +2,13 @@
 A website that shows some movies, TV shows' trailer, music videos and books' pdf.
 
 ![fresh_tomatoes](/capture_item_show_fresh_tomatoes.html.png)
+![fresh_tomatoes_video](/fresh_tomatoes_video_screenshot.png)
+![fresh_tomatoes_book](/fresh_tomatoes_book_screenshot.png)
+<!-- <figure class="third">
+    <img src="/capture_item_show_fresh_tomatoes.html.png" width=400>
+    <img src="/fresh_tomatoes_video_screenshot.png", style="float: right", width=400>
+    <img src="/fresh_tomatoes_book_screenshot.png", style="float: right, width=400>
+</figure> -->
 
 ## Getting Started
 Just click the poster, what you need will pop up.
