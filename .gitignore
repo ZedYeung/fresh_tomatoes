@@ -1,0 +1,15 @@
+__pycache__/
+
+.ipynb_checkpoints/
+
+ud036_StarterCode/
+
+client_secret.json
+
+*.ipynb
+
+*.txt
+
+*.bak
+
+*.db
