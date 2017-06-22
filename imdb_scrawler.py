@@ -4,8 +4,10 @@
 Problems:
     requests.get() get incomplete content.
 
-    e.g http://www.imdb.com/title/tt0137523/?pf_rd_m=A2FGELUUNOQJNL&pf_rd_p=2398042102&pf_rd_r=17R07QHQG2W885ARH63S&pf_rd_s=center-1&pf_rd_t=15506&pf_rd_i=top&ref_=chttp_tt_10
+    e.g:
+    http://www.imdb.com/title/tt0137523/?pf_rd_m=A2FGELUUNOQJNL&pf_rd_p=2398042102&pf_rd_r=17R07QHQG2W885ARH63S&pf_rd_s=center-1&pf_rd_t=15506&pf_rd_i=top&ref_=chttp_tt_10
     #title-overview-widget > div.vital > div.slate_wrapper > div.slate > a
+
     requests.get() lose whole slate content.
 
     The odd pages 1st, 3rd, etc are completed, but the even pages are
@@ -38,8 +40,7 @@ def get_html(url):
         print('There was a problem: %s' % e)
     return html
 
-# alternative:
-# def scrawler(url, top, tv=False, movie=False)
+
 def scrawler(url, top, type):
     """Download the top rating movie or tv_show infomation and save as json.
 
@@ -47,6 +48,8 @@ def scrawler(url, top, type):
         url: IMDB url that shows top rating movies or TV shows.
         top: the number of top rating movies or TV shows need to be scrawl.
         type: movie or Tv show.
+    Alternative:
+        def scrawler(url, top, tv=False, movie=False)
     """
     print('Downloading...')
 

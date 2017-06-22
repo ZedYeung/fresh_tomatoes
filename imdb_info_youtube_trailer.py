@@ -19,10 +19,12 @@ DEVELOPER_KEY = "AIzaSyC1VgRvdiTMFRXcQMRATSdlM4-w2KZr8Ss"
 YOUTUBE_API_SERVICE_NAME = "youtube"
 YOUTUBE_API_VERSION = "v3"
 
-# Reference:
-# https://github.com/youtube/api-samples/blob/master/python/search.py
+
 def youtube_search(options):
     """Return a collection of search results that match the query parameters.
+
+    Reference:
+        https://github.com/youtube/api-samples/blob/master/python/search.py
 
     Args:
         options: arguments for searching video trailer.
