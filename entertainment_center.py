@@ -1,36 +1,44 @@
-#! python3
-# generate the final fresh_tomatoes html
+"""Generate the final fresh_tomatoes html.
+
+Use data in data directory to create according class objects and then
+use them to fill the fresh_tomatoes html frame.
+"""
 import json
 import os
 import re
 import webbrowser
 import item_class
 import fresh_tomatoes
+from os.path import abspath
 
+# list that store objects of specific item class.
 movies = []
 tv_shows = []
 mv = []
 books = []
 
 
-def gen_video_class(type):
-    with open(os.path.abspath(os.path.join('data', type + 's_youtube.json'))) as vj:
-        videos_raw = json.load(vj)
+def create_video_obj(subclass):
+    """Create objects of certain Video subclass."""
+    with open(abspath(os.path.join('data', subclass + 's_youtube.json'))) as v:
+        videos_raw = json.load(v)
         for video in videos_raw:
             title = video['title'].replace(' ', '_')
-            if type == 'movie':
+            if subclass == 'movie':
                 locals()[title] = item_class.Movie(*video.values())
                 movies.append(locals()[title])
             else:
                 locals()[title] = item_class.Tv(*video.values())
                 tv_shows.append(locals()[title])
 
-# Problem: can't play mv from VEVO
+
+# Create objects of Mv class.
+# Problem: can't play mv from VEVO.
 # This video contains content from VEVO.
 # It is restricted from playback on certain sites or applications.
 for mv_json in os.listdir('./data/mv'):
-    with open(os.path.abspath(os.path.join('data', 'mv', mv_json))) as mj:
-        mv_raw = json.load(mj)
+    with open(abspath(os.path.join('data', 'mv', mv_json))) as m:
+        mv_raw = json.load(m)
         # cleaning
         title = mv_raw['title']
         title = re.sub(r'\(.*\)', '', title)
@@ -38,29 +46,35 @@ for mv_json in os.listdir('./data/mv'):
         title = re.sub(r'(ft\.|feat\.| ft ).*', '', title)
         title = title.replace('|', '-').replace(':', '-')
 
-        # generate object
+        # create object
         summary = title.replace(' ', '_')
         singer, title = title.split('-')
-        locals()[summary] = item_class.Mv(title, mv_raw['upload_date'][:4],
-                            mv_raw['thumbnail'], mv_raw['webpage_url'],
-                            summary, singer)
+        locals()[summary] = item_class.Mv(title,
+                                          mv_raw['upload_date'][:4],
+                                          mv_raw['thumbnail'],
+                                          mv_raw['webpage_url'],
+                                          summary, singer)
         mv.append(locals()[summary])
 
-with open(os.path.abspath(os.path.join('data', 'origin_book_info.json'))) as obij:
-    books_info = json.load(obij)
+# Create objects of Book class.
+with open(abspath(os.path.join('data', 'origin_book_info.json'))) as b:
+    books_info = json.load(b)
     for book_info in books_info:
         title = book_info['title'].replace(' ', '_')
         year = book_info['pubdate'][:4]
         poster = book_info['images']['large']
-        url = os.path.abspath(os.path.join('data', 'pdf', title + '.pdf'))
+        url = abspath(os.path.join('data', 'pdf', title + '.pdf'))
         summary = book_info['summary']
         author = book_info['author']
         publisher = book_info['publisher']
         page = book_info['pages']
-        locals()[title] = item_class.Book(book_info['title'], year, poster, url, summary, author, publisher, page)
+        locals()[title] = item_class.Book(book_info['title'],
+                                          year, poster, url, summary,
+                                          author, publisher, page)
         books.append(locals()[title])
 
-gen_video_class('movie')
-gen_video_class('tv_show')
+create_video_obj('movie')
+create_video_obj('tv_show')
 
+# Fill the fresh_tomatoes html frame with item objects.
 fresh_tomatoes.open_page([movies, tv_shows, mv, books])

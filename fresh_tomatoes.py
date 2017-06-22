@@ -1,3 +1,4 @@
+"""Fill the fresh_tomatoes.html with item tiles."""
 import webbrowser
 import item_class
 import os
@@ -195,7 +196,17 @@ tile_content = '''
 
 
 def create_tiles_content(items):
-    # The HTML content for this section of the page
+    """Create HTML content by filling tile_content template.
+
+    Args:
+        items: a list that contain certain type of item, such as movie, book.
+            Every item has data to format the tile_content.
+
+    Returns:
+        The whole block of content consisting a series of tiles, which will be
+        used to format the {tiles} in main_page_content.
+
+    """
     content = ''
 
     for item in items:
@@ -207,27 +218,41 @@ def create_tiles_content(items):
                 r'(?<=be/)[^&#]+', item.url)
             trailer_youtube_id = (youtube_id_match.group(0) if youtube_id_match
                                   else None)
-            source_url = 'http://www.youtube.com/embed/' + trailer_youtube_id + '?autoplay=1&html5=1'
+            source_url = 'http://www.youtube.com/embed/' + \
+                trailer_youtube_id + '?autoplay=1&html5=1'
 
-        # Append the tile for the item with its content filled in
-        content += tile_content.format(
-            title=item.title,
-            poster_image_url=item.poster,
-            source_url=item.url if isinstance(item, item_class.Book) else source_url,
-            modal_class='book' if isinstance(item, item_class.Book) else 'video'
-        )
+            # Append the formatted item tile.
+            content += tile_content.format(
+                title=item.title,
+                poster_image_url=item.poster,
+                source_url=item.url if isinstance(
+                    item, item_class.Book) else source_url,
+                modal_class='book' if isinstance(
+                    item, item_class.Book) else 'video'
+            )
 
     return content
 
 
 def open_page(items_list):
+    """Generate the final html and open it in a browser new tab.
+
+    At first, generate the navigation bar.
+    Then, generate html for every certain type item in items_list.
+    Finally, generate homepage fresh_tomatoes.html which contains 3 items
+    for every item type.
+
+    Args:
+        items_list: a list that contain several lists for different type items.
+    """
     home_page_items = []
     navbar = ''
 
     # get navigation bar
     for items in items_list:
         # identify the items class
-        cat = re.search(r'(?<=item_class\.).*(?=\'>)', str(type(items[0]))).group(0)
+        cat = re.search(r'(?<=item_class\.).*(?=\'>)',
+                        str(type(items[0]))).group(0)
         navbar += navbar_content.format(
             category_url=cat + '.html',
             nav_title=cat
@@ -235,20 +260,25 @@ def open_page(items_list):
 
     # generate website according to category
     for items in items_list:
-        cat = re.search(r'(?<=item_class\.).*(?=\'>)', str(type(items[0]))).group(0)
+        cat = re.search(r'(?<=item_class\.).*(?=\'>)',
+                        str(type(items[0]))).group(0)
         random.shuffle(items)
         home_page_items.extend(items[:3])
         # Replace the item tiles placeholder generated content
-        rendered_content = main_page_content.format(navbar=navbar,
-            tiles=create_tiles_content(items))
+        rendered_content = main_page_content.format(
+            navbar=navbar,
+            tiles=create_tiles_content(items)
+            )
         with open(cat + '.html', 'w') as f:
             f.write(main_page_head + rendered_content)
 
     # generate the home page
     output_file = open('fresh_tomatoes.html', 'w')
     # Replace the item tiles placeholder generated content
-    rendered_content = main_page_content.format(navbar=navbar,
-        tiles=create_tiles_content(home_page_items))
+    rendered_content = main_page_content.format(
+        navbar=navbar,
+        tiles=create_tiles_content(home_page_items)
+        )
     print(home_page_items)
 
     # Output the file

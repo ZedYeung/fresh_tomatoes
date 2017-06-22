@@ -1,15 +1,21 @@
 #! python3
-# scrawl top rated movie, TV shows sorted by number of ratings on imdb
-# Very strange！ requests.get() get incomplete content
-# e.g http://www.imdb.com/title/tt0137523/?pf_rd_m=A2FGELUUNOQJNL&pf_rd_p=2398042102&pf_rd_r=17R07QHQG2W885ARH63S&pf_rd_s=center-1&pf_rd_t=15506&pf_rd_i=top&ref_=chttp_tt_10
-# #title-overview-widget > div.vital > div.slate_wrapper > div.slate > a
-# requests.get() lose whole slate content
-# the odd pages 1st, 3rd, etc are completed, but the even pages are incompleted
-# I still have no idea why
+"""Scrawl top rated movie, TV shows sorted by number of ratings on imdb.
+
+Problems:
+    requests.get() get incomplete content.
+
+    e.g http://www.imdb.com/title/tt0137523/?pf_rd_m=A2FGELUUNOQJNL&pf_rd_p=2398042102&pf_rd_r=17R07QHQG2W885ARH63S&pf_rd_s=center-1&pf_rd_t=15506&pf_rd_i=top&ref_=chttp_tt_10
+    #title-overview-widget > div.vital > div.slate_wrapper > div.slate > a
+    requests.get() lose whole slate content.
+
+    The odd pages 1st, 3rd, etc are completed, but the even pages are
+    incompleted. I still have no idea why.
+"""
 import time
 import json
 import os
 import requests
+from os.path import abspath
 from bs4 import BeautifulSoup
 
 movies = []
@@ -17,11 +23,14 @@ tv_shows = []
 domain = 'http://www.imdb.com'
 movie_url = 'http://www.imdb.com/chart/top?sort=nv,desc&mode=simple&page=1'
 tv_url = 'http://www.imdb.com/chart/toptv/?sort=nv,desc&mode=simple&page=1'
-headers = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) \
-            AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'}
+headers = {
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) \
+    AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
+    }
 
 
 def get_html(url):
+    """Get html and raise exception."""
     html = requests.get(url, headers=headers)
     try:
         html.raise_for_status()
@@ -32,7 +41,13 @@ def get_html(url):
 # alternative:
 # def scrawler(url, top, tv=False, movie=False)
 def scrawler(url, top, type):
-    # Download the top rating movie or tv_show info and save as json.
+    """Download the top rating movie or tv_show infomation and save as json.
+
+    Args:
+        url: IMDB url that shows top rating movies or TV shows.
+        top: the number of top rating movies or TV shows need to be scrawl.
+        type: movie or Tv show.
+    """
     print('Downloading...')
 
     html = get_html(url)
@@ -50,8 +65,12 @@ def scrawler(url, top, type):
 
             title = title_column[i].select('a')[0].getText()
             print('Downloading ' + title)
-            year = title_column[i].select('span.secondaryInfo')[0].getText()[1:5]
-            duration = soup.select('div.title_wrapper div.subtext time[itemprop=duration]')[0].getText().strip()
+            year = title_column[i].select(
+                'span.secondaryInfo'
+                )[0].getText()[1:5]
+            duration = soup.select(
+                'div.title_wrapper div.subtext time[itemprop=duration]'
+                )[0].getText().strip()
             poster = soup.select('.poster img')[0].get('src')
             slate = soup.select_one('div.slate > a')
             trailer = domain + slate.get('href') if slate else None
@@ -60,10 +79,12 @@ def scrawler(url, top, type):
             stars = [i.getText().strip().replace(',', '') for i in actors]
 
             if type == 'movie':
-                director = soup.select('.credit_summary_item span[itemprop=director]')[0].getText().strip()
+                director = soup.select(
+                    '.credit_summary_item span[itemprop=director]'
+                    )[0].getText().strip()
                 movie = dict(
                     title=title,
-                    year = year,
+                    year=year,
                     duration=duration,
                     poster=poster,
                     trailer=trailer,
@@ -73,10 +94,19 @@ def scrawler(url, top, type):
                 )
                 movies.append(movie)
             elif type == 'tv':
-                creator = soup.select('.credit_summary_item span[itemprop=creator]')
+                creator = soup.select(
+                    '.credit_summary_item span[itemprop=creator]'
+                    )
                 creator = creator[0].getText().strip() if creator else None
-                season = soup.select('#title-episode-widget > div.seasons-and-year-nav > div:nth-of-type(3) > a:nth-of-type(1)')[0].getText()
-                episodes = soup.select('div.button_panel a.bp_item span.bp_sub_heading')[0].getText()[:2]
+                season = soup.select(
+                    '''#title-episode-widget >
+                        div.seasons-and-year-nav >
+                        div:nth-of-type(3) >
+                        a:nth-of-type(1)
+                    ''')[0].getText()
+                episodes = soup.select(
+                    'div.button_panel a.bp_item span.bp_sub_heading'
+                    )[0].getText()[:2]
                 tv_show = dict(
                     title=title,
                     year=year,
@@ -99,9 +129,9 @@ def scrawler(url, top, type):
 
 if __name__ == '__main__':
     scrawler(movie_url, 100, 'movie')
-    with open(os.path.abspath(os.path.join('data', 'movies_imdb.json')), 'w') as m:
+    with open(abspath(os.path.join('data', 'movies_imdb.json')), 'w') as m:
         m.write(json.dumps(movies))
 
     scrawler(tv_url, 50, 'tv')
-    with open(os.path.abspath(os.path.join('data', 'tv_shows_imdb.json')), 'w') as t:
+    with open(abspath(os.path.join('data', 'tv_shows_imdb.json')), 'w') as t:
         t.write(json.dumps(tv_shows))
